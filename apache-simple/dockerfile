@@ -1,0 +1,6 @@
+FROM ubuntu:18.04
+LABEL author="devops"
+LABEL Organization="devopspractice"
+RUN apt-get update && apt-get -y install apache2 git && rm -rf /var/lib/apt/lists/*
+VOLUME ["/var/www/html"]
+CMD ["apache2ctl", "-D", "FOREGROUND"]

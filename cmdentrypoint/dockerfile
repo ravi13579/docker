@@ -1,0 +1,5 @@
+FROM ubuntu:18.04
+LABEL author="devops"
+RUN apt-get update && apt-get -y install apache2 git
+ENTRYPOINT [ "echo", "Hello" ]
+CMD [ "World" ]
