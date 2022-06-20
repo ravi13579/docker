@@ -1,0 +1,10 @@
+# Build Stage
+FROM maven:3-openjdk-11 AS builder
+RUN git clone https://github.com/spring-projects/spring-petclinic.git
+RUN cd /spring-petclinic/ && mvn package
+
+# Deploy Stage
+FROM openjdk:11
+COPY --from=builder /spring-petclinic/target/spring-petclinic*.jar /spring-petclinic.jar
+EXPOSE 8080
+CMD [ "java", "-jar", "spring-petclinic.jar" ]
